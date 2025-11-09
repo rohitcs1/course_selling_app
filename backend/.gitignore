@@ -1,0 +1,82 @@
+# ---- Backend .gitignore (ready for Render) ----
+# Keep build artifacts, local data and secrets out of git,
+# but DO NOT ignore package.json or lockfiles (Render needs them to install deps).
+
+# Node modules (always ignore; Render installs on deploy)
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Runtime / PID files
+pids/
+*.pid
+*.pid.lock
+
+# Build outputs (we don't commit built output)
+dist/
+build/
+coverage/
+
+# Next.js build cache (if you ever use Next in backend)
+.next/
+
+# Environment and secret files (NEVER commit secrets)
+.env
+.env.*
+.env.local
+
+# IDE / editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test coverage
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+.cache/
+
+# Supabase local artifacts
+.supabase/
+
+# Uploaded files / storage
+uploads/
+public/uploads/
+storage/
+
+# Local databases
+*.sqlite
+*.sqlite3
+
+# Keep lockfiles tracked so Render installs reproducibly
+# (Do NOT uncomment these unless you intentionally want to ignore them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+*.swp
+*.swo
+*.log.*
+secrets.json
+report.*
+
+# If you need a file to be present on Render (for example a Procfile),
+# ensure it is committed explicitly. Do not add it to .gitignore.
+
+# End of .gitignore

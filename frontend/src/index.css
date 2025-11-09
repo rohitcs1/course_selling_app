@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50;
+    @apply min-h-screen;
+    @apply antialiased;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700;
+    @apply text-white font-semibold py-3.5 px-8 rounded-2xl;
+    @apply transition-all duration-300 ease-out;
+    @apply shadow-soft-lg hover:shadow-soft-xl;
+    @apply transform hover:scale-105 hover:-translate-y-0.5;
+    @apply active:scale-100;
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0;
+    @apply transform -translate-x-full hover:translate-x-full;
+    @apply transition-transform duration-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary-600 border-2 border-primary-200;
+    @apply font-semibold py-3.5 px-8 rounded-2xl;
+    @apply transition-all duration-300 hover:bg-primary-50;
+    @apply shadow-soft hover:shadow-soft-lg;
+    @apply hover:border-primary-300;
+    @apply transform hover:scale-105;
+  }
+  
+  .card {
+    @apply bg-white rounded-3xl;
+    @apply shadow-soft hover:shadow-soft-xl;
+    @apply transition-all duration-300 ease-out;
+    @apply overflow-hidden;
+  }
+  
+  .card-hover {
+    @apply transform hover:-translate-y-2 hover:scale-105;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600;
+    @apply bg-clip-text text-transparent;
+  }
+  
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-xl;
+    @apply border border-white/20;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #7c3aed);
+}
+
