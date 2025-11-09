@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://course.rohitcs.in/sitemap.xml
+
+# Important SEO paths
+Allow: /courses
+Allow: /course-offers
+Allow: /tutorials
+Allow: /about
+
+# Prevent indexing of admin routes
+Disallow: /admin
+Disallow: /payment
+Disallow: /api/
+
+# Crawl-delay
+Crawl-delay: 1

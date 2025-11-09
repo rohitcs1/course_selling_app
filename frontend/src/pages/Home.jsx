@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PaymentModal from '../components/PaymentModal'
+import SEO from '../components/SEO'
 
 const Home = () => {
   const location = useLocation()
@@ -11,6 +12,35 @@ const Home = () => {
   const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
   const [iframeKey, setIframeKey] = useState(0)
+
+  // Create SEO Schema for courses
+  const coursesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": courses.map((course, index) => ({
+      "@type": "Course",
+      "position": index + 1,
+      "name": course.title,
+      "description": course.description,
+      "provider": {
+        "@type": "Organization",
+        "name": "Professional Video Editing & Design Academy",
+        "sameAs": "https://your-domain.vercel.app"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": course.price,
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      },
+      ...(course.video_url && {
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "online"
+        }
+      })
+    }))
+  }
 
   useEffect(() => {
     // fetch latest courses from backend
@@ -140,8 +170,58 @@ const Home = () => {
     setIsModalOpen(true)
   }
 
+  // Create SEO Schema for courses
+  const coursesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": courses.map((course, index) => ({
+      "@type": "Course",
+      "position": index + 1,
+      "name": course.title,
+      "description": course.description,
+      "provider": {
+        "@type": "Organization",
+        "name": "Professional Video Editing & Design Academy",
+        "sameAs": "https://your-domain.vercel.app"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": course.price,
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      },
+      ...(course.video_url && {
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "online"
+        }
+      })
+    }))
+  }
+
   return (
-    <div className="relative overflow-hidden">
+    <>
+      <SEO 
+        title="Course Offers & Online Tutorials by RohitCS | Best Video Editing Courses"
+        description="Looking for best course offers? Visit RohitCS for professional video editing, graphic design & animation tutorials. Special discounts on all courses. Expert training with hands-on projects."
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "RohitCS Academy",
+          "url": "https://course.rohitcs.in",
+          "sameAs": ["https://rohitcs.in"],
+          "description": "Professional online courses and tutorials by RohitCS",
+          "coursePrerequisites": "No prior experience needed",
+          "offers": courses.map(course => ({
+            "@type": "Offer",
+            "name": course.title,
+            "price": course.price,
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }))
+        }}
+      />
+      <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Soft Background Gradient */}
@@ -578,6 +658,7 @@ const Home = () => {
         courseId={(selectedCourse || heroCourse).id}
       />
     </div>
+    </>
   )
 }
 
